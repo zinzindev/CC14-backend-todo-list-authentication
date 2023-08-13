@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-	const model = sequelize.define(
+	const TodoList = sequelize.define(
 		'TodoList',
 		{
 			task: {
@@ -12,5 +12,9 @@ module.exports = (sequelize, DataTypes) => {
 		}
 	);
 
-	return model;
+	TodoList.associate = (db) => {
+		TodoList.belongsTo(db.User, { foreignKey: 'user_id' });
+	};
+
+	return TodoList;
 };
